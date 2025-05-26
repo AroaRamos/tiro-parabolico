@@ -1,7 +1,35 @@
 <html>
-  <body>
-    <h1>Tiro-Parabólico</h1>
-    <p> Angulo(grados) <input type= "number" name="angulo" id="angulo"> </p>
-    <p> Velicidad Inicial (m/s) <input type= "number" name="vel-ini" id="vel-ini"> </p>
-  </body>
+<body>
+  <h1>Tiro Parabólico</h1>
+  <p>Ángulo (grados): <input type="number" id="angulo" placeholder="Ingresa el ángulo"></p>
+  <p>Velocidad Inicial (m/s): <input type="number" id="vel-ini" placeholder="Ingresa la velocidad"></p>
+ 
+  <!-- Botón para calcular la distancia -->
+  <button id="calcular">Calcular Distancia</button>
+ 
+  <!-- Aquí se mostrará el resultado -->
+  <p id="resultado"></p>
+ 
+  <script src="logica.js"></script>
+  <script>
+    // Agregar el evento al botón "Calcular"
+    document.getElementById("calcular").addEventListener("click", function() {
+      // Obtener los valores de los inputs
+      const angulo = parseFloat(document.getElementById("angulo").value);
+      const vel_ini = parseFloat(document.getElementById("vel-ini").value);
+
+      // Validación de los inputs
+      if (isNaN(angulo) || isNaN(vel_ini) || angulo <= 0 || vel_ini <= 0) {
+        alert("Por favor, ingrese valores válidos.");
+        return;  // No hacer nada si los valores no son válidos
+      }
+
+      // Llamar a la función para calcular la distancia
+      const distancia = calculaDistancia(angulo, vel_ini);
+
+      // Mostrar el resultado en el HTML
+      document.getElementById("resultado").innerText = `La distancia máxima es: ${distancia.toFixed(2)} metros.`;
+    });
+  </script>
+</body>
 </html>
